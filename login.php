@@ -189,11 +189,12 @@ $erro = isset($_GET["erro"]);
 
                             <!-- Botão Entrar -->
                             <button type="submit" class="btn btn-primary w-100">
-                                Conectar
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Conectar
                             </button>
                         </form>
                         <!-- Voltar ao site -->
-                        <button class="btn btn-outline-primary d-block mt-3" onclick="window.location.href='index.php'">Voltar</button>
+                        <button class="btn btn-outline-primary d-block mt-3" onclick="window.location.href='index.php'">
+                            <i class="bi bi-arrow-return-left me-2"></i>Voltar</button>
                     </div>
                 </div>
             </div>
