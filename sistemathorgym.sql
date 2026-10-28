@@ -9,5 +9,3 @@ create table usuario(
     senha_hash varchar(250) not null,
     criado_em timestamp default current_timestamp
 );
-
-/*123456123456*/

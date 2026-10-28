@@ -93,7 +93,7 @@
                             class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
                             <!-- Ícone fixado na esquerda -->
                             <span class="position-absolute start-0 ms-3">
-                                <i class="bi bi-backspace fs-3"></i>
+                                <i class="bi bi-arrow-return-left fs-3"></i>
                             </span>Voltar
                         </a>
 

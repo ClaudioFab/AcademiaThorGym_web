@@ -38,12 +38,15 @@ if (!isset($_SESSION['usuario_id'])) {
             <!-- Links que ficam do lado de fora ------------------------------------->
             <div class="d-flex align-items-center gap-3 ms-auto">
 
-                <ul class="navbar-nav flex-row gap-3 me-2">
+                <ul class="navbar-nav flex-row gap-3 me-2 align-items-center">
                     <li class="nav-item">
                         <a class="nav-link active fs-5" aria-current="page" href="#inicio">Início</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link active fs-5 fw-bold" aria-current="page" href="index.php">Voltar</a>
+                        <form action="logout.php" method="POST" class="d-inline">
+                            <button type="submit" class="nav-link active fs-5 fw-bold btn btn-link p-0 border-0 text-decoration-none">Desconectar</button>
+                        </form>
                     </li>
                 </ul>
 
@@ -72,53 +75,13 @@ if (!isset($_SESSION['usuario_id'])) {
 
                         <br>
 
-                        <!-- BOTÃO DE LOGIN ------------------------------------------------------------>
-                        <!-- <a href="login.php"
-                            class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
-                            <span class="position-absolute start-0 ms-3">
-                                <i class="bi bi-box-arrow-in-right fs-3"></i>
-                            </span>Login
-                        </a> -->
-
-
-                        <!-- LINK 01 -------------------------------------------------------------------
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="index.php"><i class="bi bi-book fs-4 me-2"></i>Link
-                                A</a>
-                        </li> -->
-
-                        <br><br>
-
-                        <!-- LINK 02 -------------------------------------------------------------------
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5" aria-current="page" href="index.php"><i
-                                    class="bi bi-info-square fs-4 me-2"></i>Link B</a>
-                        </li> -->
-
-                        <!-- LINK VOLTAR -------------------------------------------------------------------
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5 fw-bold" aria-current="page" href="index.php">Voltar</a>
-                        </li> -->
-
-                        <!-- BOTÃO VOLTAR -->
-                        <a href="index.php"
-                            class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
-                            <!-- Ícone fixado na esquerda -->
-                            <span class="position-absolute start-0 ms-3">
-                                <i class="bi bi-backspace fs-3"></i>
-                            </span>Voltar
-                        </a>
-
                         <form action="logout.php" method="POST">
-                            <button type="submit" class="btn btn-outline-primary">
-                                Sair
+                            <button type="submit" class="fw-bold fs-5 btn btn-outline-light w-100">
+                                <i class="bi bi-backspace fs-3 me-2"></i>Desconectar
                             </button>
                         </form>
 
-
-
-
-
+                        <br><br>
 
                     </ul>
                 </div>
@@ -158,17 +121,71 @@ if (!isset($_SESSION['usuario_id'])) {
 
     </header>
 
+    <!-- MAIN ------------------------------------------------------>
     <main>
         <section class="container">
             <br><br><br>
 
             <div class="card d-flex justify-content-center align-items-center">
-                Conteúdo
+                <section class="corFrase">
+                    <?php
+                    echo "Olá, fulano!";
+                    ?>
+                </section>
             </div>
+
+
+            <!-- CARD CATEGORIAS in ----------------------------------------------------------------------->
+            <section class="container text-center mt-5 " id="categoria">
+                <!-- Titulo -->
+                <div>
+                    <h2 class="text-primary-emphasis fw-bold">Selecione uma Categoria</h2>
+                    <p class="text-primary pb-4">Sistema Acadêmico de Exemplo CRUD.</p>
+                </div>
+
+                <div class="row g-4 mb-5">
+                    <!-- CARD01 --->
+                    <div class="col-12 col-md-4">
+
+                        <!----------------------->
+                        <div class="card pb-2 mx-auto" style="width: 18rem;">
+                            <div class="card-body">
+                                <i class="bi bi-book fs-1 text-primary"></i>
+                                <a class="card-title nav-link active fw-bold fs-5 text-primary-emphasis"
+                                    href="cadastro.php">Cadastro de Planos</a>
+                                <p class="card-text text-primary">Para cadastrar novos planos e pacotes.</p>
+
+                                <p> </p>
+
+                            </div>
+                        </div>
+                        <!----------------------->
+
+                    </div>
+                    <!-- CARD02 --->
+                    <div class="col-12 col-md-4">
+                        <div class="card pb-2 mx-auto" style="width: 18rem;">
+                            <div class="card-body">
+                                <i class="bi bi-info-square fs-1 text-primary"></i>
+                                <a class="card-title nav-link active fw-bold fs-5 text-primary-emphasis"
+                                    href="atualizarDados.php">Atualizar dados dos planos</a>
+                                <p class="card-text text-primary">Atualizar e gerenciar informações gerais dos planos.</p>
+                                <p> </p>
+
+                            </div>
+                        </div>
+                        <!----------------------->
+                    </div>
+
+                </div>
+            </section>
+            <!-- ------------------------------------------------------------------------------------------>
 
             <br><br><br>
         </section>
     </main>
+
+
 
     <!-- FOOTER --------------------------------------------------------------------------------------------------------->
     <footer class="text-white p-3 pt-4" data-bs-theme="dark" style="background-color: #1b253e;">

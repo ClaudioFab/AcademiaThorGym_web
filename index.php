@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+header('Cache-Control: no-store, no-cache, must-revalidate');
+
+// Se o usuário já estiver logado, redireciona de volta para o indexLogado.php
+if (isset($_SESSION['usuario_id'])) {
+    header('Location: indexLogado.php');
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -103,7 +116,7 @@
                             class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
                             <!-- Ícone fixado na esquerda -->
                             <span class="position-absolute start-0 ms-3">
-                                <i class="bi bi-backspace fs-3"></i>
+                                <i class="bi bi-arrow-return-left fs-3"></i>
                             </span>Voltar
                         </a>
 
@@ -227,7 +240,7 @@
         </section>
         <!-- ------------------------------------------------------------------------------------------>
 
-        <!-- CARD PRODUTOS ---------------------------------------------------------------------------->
+        <!-- CARD PLANOS EM DESTAQUE ---------------------------------------------------------------------------->
         <section class="container-fluid text-center p-1" style="background-color: #edf1f9;" id="planos">
             <div class="container">
                 <!-- Título -->
