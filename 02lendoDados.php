@@ -32,15 +32,14 @@
 
                     require("conexao.php");
 
-                    $consulta = "SELECT * FROM sistemaacademico.matricula";
+                    $consulta = "SELECT * FROM sistemathorgym.usuario";
 
-                    $matricula = mysqli_query($conexao, $consulta);
+                    $usuario = mysqli_query($conexao, $consulta);
 
-                    while ($array = mysqli_fetch_array($matricula)) {
+                    while ($array = mysqli_fetch_array($usuario)) {
                         echo
-                        $array['idMatricula'] . " - " .
-                            "Aluno: " . $array['nome'] . " - " .
-                            "Curso: " . $array['curso'] . "<br>";
+                        $array['idusuario'] . " - " .
+                            "Usuário: " . $array['nome'] . "<br>";
                     }
 
                     ?>

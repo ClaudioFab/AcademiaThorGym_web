@@ -73,78 +73,176 @@ if (isset($_GET['apagar'])) {
 
 </head>
 
-<body>
+<body style="background-color: #edf1f9;">
 
     <!-- MAIN ----------------------------------------------------------------------------------------------------------->
+
+    <br><br>
     <main class="container mt-5">
-        <!-- Título e Descrição --------------------------------------------------->
-        <section class=" mb-4" id="atualizarDados">
-            <h2 class="text-primary-emphasis fw-bold text-center">Atualizar informações de Planos</h2>
-            <p class="text-primary text-center">Edite as informações dos planos e modalidades abaixo.</p>
 
-            <!-- Formulário em card central--------------------------------------->
-            <div class="card">
+        <!-- Título e descrição -->
+        <section class="mb-4" id="atualizarDados">
+            <h2 class="text-primary-emphasis fw-bold text-center">
+                Gerenciar Planos
+            </h2>
 
-                <div class="row justify-content-center mb-5 card-body">
+            <p class="text-primary text-center">
+                Consulte, edite ou remova os planos cadastrados.
+            </p>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Plano</th>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
+            <!-- EDIÇÃO e EXCLUSÃO ------------------------------------->
+            <div class="w-100">
+                <div class=" p-4">
 
-                        <tbody>
-                            <?php while ($plano = mysqli_fetch_assoc($modalidades)): ?>
+                    <div class=" table-responsive rounded-3">
+                        <table class="table table-hover table-bordered align-middle">
+                            <thead class="table">
                                 <tr>
-                                    <td><?= $plano['idplanos'] ?></td>
-                                    <td><?= $plano['nomePlano'] ?></td>
-                                    <td><?= $plano['descricao'] ?></td>
-                                    <td><?= $plano['valor'] ?></td>
-                                    <td>
-                                        <a href="?editar=<?= $plano['idplanos'] ?>">Editar</a>
-                                    </td>
-                                    <td>
-                                        <a href="?apagar=<?= $plano['idplanos'] ?>">Apagar</a>
-                                    </td>
+                                    <th class="bg-primary text-white">ID</th>
+                                    <th class="bg-primary text-white">Plano</th>
+                                    <th class="bg-primary text-white">Descrição</th>
+                                    <th class="bg-primary text-white">Valor</th>
+                                    <th class="bg-primary text-white"></th>
                                 </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
+                            </thead>
 
-                    <?php
+                            <tbody>
+                                <?php while ($plano = mysqli_fetch_assoc($modalidades)): ?>
+                                    <tr>
+                                        <td><?= $plano['idplanos'] ?></td>
 
-                    if ($editaPlano): ?>
-                        <h3>Editar Plano</h3>
+                                        <td class="fw-bold">
+                                            <?= $plano['nomePlano'] ?>
+                                        </td>
 
-                        <form method="POST">
+                                        <td><?= $plano['descricao'] ?></td>
 
-                            <!-- ID Planos -->
-                            <label>ID:</label><br>
-                            <input type="text" name="idplanos" value="<?= $editaPlano['idplanos'] ?>">
-                            <br><br>
-                            <label>Plano: </label><br>
-                            <input type="text" name="plano" value="<?= $editaPlano['nomePlano'] ?>">
-                            <br><br>
-                            <label>Descricao do plano: </label><br>
-                            <input type="text" name="curso" value="<?= $editaPlano['descricao'] ?>">
-                            <br><br>
-                            <label>Valor: </label><br>
-                            <input type="text" name="curso" value="<?= $editaPlano['valor'] ?>">
-                            <br><br>
-                            <button type="submit" name="atualizar">Atualizar</button>
-                            <br><br>
-                            <button type="button" onclick="window.location.href='02atualizarDados.php'">Cancelar</button>
+                                        <td>
+                                            R$ <?= number_format($plano['valor'], 2, ',', '.') ?>
+                                        </td>
 
-                        </form>
-                    <?php endif; ?>
+                                        <td class="text-center">
+                                            <a href="?editar=<?= $plano['idplanos'] ?>"
+                                                class="fw-bold btn btn-primary btn-sm me-1">
+                                                <i class="bi bi-pencil me-2"></i>Editar
+                                            </a>
+
+                                            <a href="?apagar=<?= $plano['idplanos'] ?>"
+                                                class="fw-bold btn btn-dark btn-sm">
+                                                <i class="bi bi-trash me-2"></i>Apagar
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
-
             </div>
+
+            <!-- Atualizar ou cancelar --------------------------->
+            <?php if ($editaPlano): ?>
+
+                <div class="row justify-content-center mt-4 mb-5">
+                    <div class="col-12 col-md-6 col-lg-5">
+
+                        <div class="card shadow-sm w-100">
+                            <div class="card-body p-4">
+
+                                <h4 class="text-primary-emphasis fw-bold text-center mb-4">
+                                    Editar Plano
+                                </h4>
+
+                                <form method="POST">
+
+                                    <!-- ID -->
+                                    <div class="mb-3 text-start">
+                                        <label class="form-label fw-bold text-primary-emphasis">
+                                            ID
+                                        </label>
+
+                                        <input type="text"
+                                            name="idplanos"
+                                            class="text-primary form-control border-primary-subtle"
+                                            value="<?= $editaPlano['idplanos'] ?>"
+                                            readonly>
+                                    </div>
+
+                                    <!-- Plano -->
+                                    <div class="mb-3 text-start">
+                                        <label class="form-label fw-bold text-primary-emphasis">
+                                            Plano/Modalidade
+                                        </label>
+
+                                        <input type="text"
+                                            name="nomePlano"
+                                            class="text-primary form-control border-primary-subtle"
+                                            value="<?= $editaPlano['nomePlano'] ?>"
+                                            required>
+                                    </div>
+
+                                    <!-- Descrição -->
+                                    <div class="mb-4 text-start">
+                                        <label class="form-label fw-bold text-primary-emphasis">
+                                            Descrição do plano
+                                        </label>
+
+                                        <input type="text"
+                                            name="descricao"
+                                            class="text-primary form-control border-primary-subtle"
+                                            value="<?= $editaPlano['descricao'] ?>"
+                                            required>
+                                    </div>
+
+                                    <!-- Valor -->
+                                    <div class="mb-4 text-start">
+                                        <label class="form-label fw-bold text-primary-emphasis">
+                                            Valor do plano
+                                        </label>
+
+                                        <small class="form-text d-block mb-2">
+                                            Digite apenas números. Ex.: 1000 = R$ 10,00.
+                                        </small>
+
+                                        <input type="number"
+                                            name="valor"
+                                            class="text-primary form-control border-primary-subtle"
+                                            value="<?= round($editaPlano['valor'] * 100) ?>"
+                                            step="1"
+                                            min="0"
+                                            required>
+                                    </div>
+
+                                    <!-- Botões -->
+                                    <div class="d-grid gap-2">
+
+                                        <button type="submit"
+                                            name="atualizar"
+                                            class="btn btn-primary fw-bold">
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            Atualizar
+                                        </button>
+
+                                        <button type="button"
+                                            class="btn btn-outline-primary fw-bold"
+                                            onclick="window.location.href='02atualizarDados.php'">
+                                            <i class="bi bi-x-circle me-2"></i>
+                                            Cancelar
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
         </section>
     </main>
 

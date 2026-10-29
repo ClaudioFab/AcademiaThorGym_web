@@ -39,15 +39,43 @@ if (!isset($_SESSION['usuario_id'])) {
             <div class="d-flex align-items-center gap-3 ms-auto">
 
                 <ul class="navbar-nav flex-row gap-3 me-2 align-items-center">
+
+                    <!-- Nome do usuário -->
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" aria-current="page" href="#inicio">Início</a>
+                        <span class="nav-link active fs-5 fw-bold text-white">
+
+                            <!-- Colocando nome do usuario logado no navbar -->
+                            <?php
+                            require("conexao.php");
+
+                            $consulta = "SELECT * FROM sistemathorgym.usuario";
+                            $usuario = mysqli_query($conexao, $consulta);
+
+                            while ($array = mysqli_fetch_array($usuario)) {
+                                echo "<h3 class='text-white fw-bold'>", $array['nome'],"</h3>";
+                            }
+
+
+                            ?>
+                        </span>
                     </li>
 
+                    <!-- Início -->
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5"
+                            aria-current="page" href="#inicio">Início</a>
+                    </li>
+
+                    <!-- Desconectar -->
                     <li class="nav-item">
                         <form action="logout.php" method="POST" class="d-inline">
-                            <button type="submit" class="nav-link active fs-5 fw-bold btn btn-link p-0 border-0 text-decoration-none">Desconectar</button>
+                            <button type="submit"
+                                class="nav-link active fs-5 fw-bold btn btn-link p-0 border-0 text-decoration-none">
+                                Desconectar
+                            </button>
                         </form>
                     </li>
+
                 </ul>
 
                 <!-- Botão lateral direito ---------------------------------------->
@@ -123,18 +151,27 @@ if (!isset($_SESSION['usuario_id'])) {
     <!-- MAIN ------------------------------------------------------>
     <main>
         <section class="container">
-            <br><br><br>
+            <br><br>
 
-            <div class="card d-flex justify-content-center align-items-center">
-                <section class="corFrase">
+            <div class=" d-flex justify-content-center align-items-center">
+                <section>
                     <?php
-                    echo "Bem vindo, fulano!";
+                    require("conexao.php");
+
+                    $consulta = "SELECT * FROM sistemathorgym.usuario";
+                    $usuario = mysqli_query($conexao, $consulta);
+
+                    while ($array = mysqli_fetch_array($usuario)) {
+                        echo "<h3 class='text-primary-emphasis fw-bold'>";
+                        echo "Bem-vindo, <span class='text-primary'>" . $array['nome'] . "</span>";
+                        echo "</h3>";
+                    }
                     ?>
                 </section>
             </div>
 
             <!-- CARD CATEGORIAS in ----------------------------------------------------------------------->
-            <section class="container text-center mt-5 " id="categoria">
+            <section class="container text-center mt-3 " id="categoria">
                 <!-- Titulo -->
                 <div>
                     <h2 class="text-primary-emphasis fw-bold">Selecione uma Categoria</h2>

@@ -1,9 +1,5 @@
 <?php
 
-//Original base de referencia
-//$nome = $_POST["aluno"];
-//$curso = $_POST["curso"];
-
 //Impedimento para caso não esteja logado -------->
 session_start(); // Inicia a sessão do usuário
 
