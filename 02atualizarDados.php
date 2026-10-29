@@ -3,16 +3,21 @@
 require("conexao.php");
 
 if (isset($_POST['atualizar'])) {
-    $idMatricula = $_POST['idMatricula'];
-    $nome        = $_POST['nome'];
-    $curso       = $_POST['curso'];
+    $idplanos    = $_POST['idplanos'];
+    $nomeP       = $_POST['nomePlano'];
+    $descricao   = $_POST['descricao'];
+    $valor       = $_POST['valor'];
 
-    $atualizar = "UPDATE matricula SET nome = '$nome', curso = '$curso' WHERE idMatricula = '$idMatricula' ";
+    $atualizar = "UPDATE planos SET 
+    nomePlano = '$nomeP', 
+    descricao = '$descricao', 
+    valor     = '$valor' 
+    WHERE idplanos = '$idplanos' ";
 
     if (mysqli_query($conexao, $atualizar)) {
         echo "<script>
             alert('Dados atualizados com sucesso!');
-            window.location='atualizarDados.php';
+            window.location='02atualizarDados.php';
         </script>";
         exit();
     } else {
@@ -20,28 +25,28 @@ if (isset($_POST['atualizar'])) {
     }
 }
 
-$editaAluno = null;
+$editaPlano = null;
 
 if (isset($_GET['editar'])) {
 
     $idEditar = $_GET['editar'];
 
-    $resultado = mysqli_query($conexao, "SELECT * FROM matricula WHERE idMatricula = $idEditar");
+    $resultado = mysqli_query($conexao, "SELECT * FROM planos WHERE idplanos = $idEditar");
 
-    $editaAluno = mysqli_fetch_assoc($resultado);
+    $editaPlano = mysqli_fetch_assoc($resultado);
 }
 
-$alunos = mysqli_query($conexao, "SELECT * FROM matricula");
+$modalidades = mysqli_query($conexao, "SELECT * FROM planos");
 
 if (isset($_GET['apagar'])) {
-    $idMatricula = $_GET['apagar'];
+    $idplanos = $_GET['apagar'];
 
-    $deletar = "DELETE FROM sistemaacademico.matricula WHERE idMatricula = $idMatricula";
+    $deletar = "DELETE FROM planos WHERE idplanos = $idplanos";
 
     if (mysqli_query($conexao, $deletar)) {
         echo "<script>
             alert('Dados excluidos com sucesso!');
-            window.location='atualizarDados.php';
+            window.location='02atualizarDados.php';
         </script>";
         exit();
     } else {
@@ -69,13 +74,13 @@ if (isset($_GET['apagar'])) {
 </head>
 
 <body>
-    
+
     <!-- MAIN ----------------------------------------------------------------------------------------------------------->
     <main class="container mt-5">
         <!-- Título e Descrição --------------------------------------------------->
         <section class=" mb-4" id="atualizarDados">
-            <h2 class="text-primary-emphasis fw-bold text-center">Atualizar Dados do Aluno</h2>
-            <p class="text-primary text-center">Edite as informações do aluno abaixo.</p>
+            <h2 class="text-primary-emphasis fw-bold text-center">Atualizar informações de Planos</h2>
+            <p class="text-primary text-center">Edite as informações dos planos e modalidades abaixo.</p>
 
             <!-- Formulário em card central--------------------------------------->
             <div class="card">
@@ -86,23 +91,24 @@ if (isset($_GET['apagar'])) {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nome</th>
-                                <th>Curso</th>
-                                <th>Ações</th>
+                                <th>Plano</th>
+                                <th>Descrição</th>
+                                <th>Valor</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php while ($aluno = mysqli_fetch_assoc($alunos)): ?>
+                            <?php while ($plano = mysqli_fetch_assoc($modalidades)): ?>
                                 <tr>
-                                    <td><?= $aluno['idMatricula'] ?></td>
-                                    <td><?= $aluno['nome'] ?></td>
-                                    <td><?= $aluno['curso'] ?></td>
+                                    <td><?= $plano['idplanos'] ?></td>
+                                    <td><?= $plano['nomePlano'] ?></td>
+                                    <td><?= $plano['descricao'] ?></td>
+                                    <td><?= $plano['valor'] ?></td>
                                     <td>
-                                        <a href="?editar=<?= $aluno['idMatricula'] ?>">Editar</a>
+                                        <a href="?editar=<?= $plano['idplanos'] ?>">Editar</a>
                                     </td>
                                     <td>
-                                        <a href="?apagar=<?= $aluno['idMatricula'] ?>">Apagar</a>
+                                        <a href="?apagar=<?= $plano['idplanos'] ?>">Apagar</a>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
@@ -111,24 +117,27 @@ if (isset($_GET['apagar'])) {
 
                     <?php
 
-                    if ($editaAluno): ?>
-                        <h3>Editar Aluno</h3>
+                    if ($editaPlano): ?>
+                        <h3>Editar Plano</h3>
 
                         <form method="POST">
 
-                            <!-- ID Aluno -->
+                            <!-- ID Planos -->
                             <label>ID:</label><br>
-                            <input type="text" name="idMatricula" value="<?= $editaAluno['idMatricula'] ?>">
+                            <input type="text" name="idplanos" value="<?= $editaPlano['idplanos'] ?>">
                             <br><br>
-                            <label>Nome: </label><br>
-                            <input type="text" name="nome" value="<?= $editaAluno['nome'] ?>">
+                            <label>Plano: </label><br>
+                            <input type="text" name="plano" value="<?= $editaPlano['nomePlano'] ?>">
                             <br><br>
-                            <label>Curso: </label><br>
-                            <input type="text" name="curso" value="<?= $editaAluno['curso'] ?>">
+                            <label>Descricao do plano: </label><br>
+                            <input type="text" name="curso" value="<?= $editaPlano['descricao'] ?>">
+                            <br><br>
+                            <label>Valor: </label><br>
+                            <input type="text" name="curso" value="<?= $editaPlano['valor'] ?>">
                             <br><br>
                             <button type="submit" name="atualizar">Atualizar</button>
                             <br><br>
-                            <button type="button" onclick="window.location.href='atualizarDados.php'">Cancelar</button>
+                            <button type="button" onclick="window.location.href='02atualizarDados.php'">Cancelar</button>
 
                         </form>
                     <?php endif; ?>

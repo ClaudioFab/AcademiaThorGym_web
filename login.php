@@ -20,7 +20,7 @@ $erro = isset($_GET["erro"]);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thor Gym</title>
+    <title>ThorGym - Login</title>
     <!-- Para conectar ao bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -156,53 +156,70 @@ $erro = isset($_GET["erro"]);
 
     </header>
 
-    <br><br>
 
     <!-- MAIN ----------------------------------------------------------------------------------->
-    <main class="container d-flex justify-content-center align-items-center">
-        <div class="card shadow-sm w-100" style="max-width: 420px;">
-            <div class="card-body p-4">
-                <h2 class="text-primary-emphasis fw-bold mb-3">
-                    Acesso Administrativo
-                </h2>
+    <main class="container mt-5">
+        <!-- Título e Descrição --------------------------------------------------->
+        <section class="text-center mb-4">
+            <h2 class="text-primary-emphasis fw-bold">Acesso Administrativo</h2>
+            <p class="text-primary">Login para área do administrador.</p>
+            <br>
 
-                <!-- Mostra erro se o login estiver incorreto -->
-                <?php if ($erro): ?>
+            <div class="row justify-content-center mb-5">
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div class="card shadow-sm w-100">
+                        <div class="card-body p-4">
 
-                    <div class="alert alert-danger">
-                        E-mail ou senha inválidos.
-                    </div>
-                <?php endif; ?>
+                            <!-- Mostra erro se o login estiver incorreto -->
+                            <?php if ($erro): ?>
 
-                <div class="row ">
-                    <div class="col">
-                        <form action="autenticar.php" method="POST">
-                            <div class="mb-3">
-                                <label class="form-label text-primary">Email</label>
-                                <input type="text" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Digite seu Email">
-                                <div id="emailHelp" class="form-text">Nunca compartilharemos seu e-mail.</div>
+                                <div class="alert alert-danger">
+                                    E-mail ou senha inválidos.
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="row ">
+                                <div class="col">
+                                    <form action="autenticar.php" method="POST">
+                                        <div class="mb-3 text-start">
+                                            <label class="form-label fw-bold text-primary-emphasis">Email</label>
+                                            <input type="text" name="email" class="text-primary form-control border-primary-subtle" aria-describedby="emailHelp" placeholder="Digite seu Email">
+
+                                            <div id="emailHelp" class="form-text">Nunca compartilharemos seu e-mail.</div>
+                                        </div>
+                                        <div class="mb-3 text-start">
+                                            <label class="form-label fw-bold text-primary-emphasis">Senha</label>
+                                            <input type="password" name="senha" class="text-primary form-control border-primary-subtle" placeholder="Digite sua Senha">
+                                        </div>
+
+                                        <!-- Botões -------------------------------------------->
+                                        <div class="d-grid gap-2">
+                                            <!-- Botão Entrar -->
+                                            <button type="submit" class="btn btn-primary w-100 fw-bold">
+                                                <i class="bi bi-box-arrow-in-right me-2"></i>Conectar
+                                            </button>
+
+                                            <button type="reset" class="btn btn-outline-primary fw-bold">
+                                                <i class="bi bi-x-circle me-2"></i>Limpar
+                                            </button>
+
+                                        </div>
+
+                                    </form>
+                                    <!-- Voltar ao site -->
+                                    <button class="btn btn-outline-primary d-block mt-3" onclick="window.location.href='index.php'">
+                                        <i class="bi bi-arrow-return-left me-2"></i>Voltar</button>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label text-primary">Senha</label>
-                                <input type="password" class="form-control" name="senha" placeholder="Digite sua Senha">
-                            </div>
-
-                            <!-- Botão Entrar -->
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Conectar
-                            </button>
-                        </form>
-                        <!-- Voltar ao site -->
-                        <button class="btn btn-outline-primary d-block mt-3" onclick="window.location.href='index.php'">
-                            <i class="bi bi-arrow-return-left me-2"></i>Voltar</button>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
-        </div>
 
+        </section>
     </main>
-
-    <br><br>
 
     <!-- FOOTER --------------------------------------------------------------------------------------------------------->
     <footer class="text-white p-3 pt-4" data-bs-theme="dark" style="background-color: #1b253e;">
