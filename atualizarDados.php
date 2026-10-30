@@ -17,7 +17,7 @@ if (isset($_POST['atualizar'])) {
     if (mysqli_query($conexao, $atualizar)) {
         echo "<script>
             alert('Dados atualizados com sucesso!');
-            window.location='02atualizarDados.php';
+            window.location='atualizarDados.php';
         </script>";
         exit();
     } else {
@@ -46,7 +46,7 @@ if (isset($_GET['apagar'])) {
     if (mysqli_query($conexao, $deletar)) {
         echo "<script>
             alert('Dados excluidos com sucesso!');
-            window.location='02atualizarDados.php';
+            window.location='atualizarDados.php';
         </script>";
         exit();
     } else {
@@ -74,10 +74,115 @@ if (isset($_GET['apagar'])) {
 </head>
 
 <body style="background-color: #edf1f9;">
+    <!-- NAVBAR -------------------------------------------------------------------------------------------------------->
+    <nav class="navbar p-2 fixed-top" data-bs-theme="dark" style="background-color: #28385d;">
+        <div class="container-fluid">
+            <!-- Título e icone --------------------------------->
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-lightning me-2" style="display: inline-block; transform: scaleX(-1);"></i>Thor Gym<i
+                    class="bi bi-lightning ms-1"></i></a>
 
-    <!-- MAIN ----------------------------------------------------------------------------------------------------------->
+            <!-- Links que ficam do lado de fora ------------------------------------->
+            <div class="d-flex align-items-center gap-3 ms-auto">
 
-    <br><br>
+                <ul class="navbar-nav flex-row gap-3 me-2 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" aria-current="page" href="#inicio">Início</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5 " aria-current="page" href="indexLogado.php">Voltar</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <form action="logout.php" method="POST" class="d-inline">
+                            <button type="submit" class="nav-link active fs-5 fw-bold btn btn-link p-0 border-0 text-decoration-none">Desconectar</button>
+                        </form>
+                    </li>
+                </ul>
+
+                <!-- Botão lateral direito ---------------------------------------->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Barra Lateral----------------------------------------------------->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+
+                <!-- Local de alterar a cor do menu ------------------------------->
+                <div class="offcanvas-header" style="background-color: #28385d;">
+                    <h3 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel"><i
+                            class="bi bi-list fs-2 me-2"></i>Menu</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <!-- Local de alterar a cor abaixo do menu ------------------------->
+                <div class="offcanvas-body" style="background-color: #4463ab;">
+                    <!-- links internos dentro da barra  ----------------------------------------------->
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 d-flex align-items-center">
+
+                        <br>
+
+                        <form action="logout.php" method="POST">
+                            <button type="submit" class="fw-bold fs-5 btn btn-outline-light w-100">
+                                <i class="bi bi-backspace fs-5 me-2"></i>Desconectar
+                            </button>
+                        </form>
+
+                        <br><br>
+
+                        <!-- BOTÃO VOLTAR -->
+                        <a href="indexLogado.php"
+                            class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
+                            <!-- Ícone fixado na esquerda -->
+                            <span class="position-absolute start-0 ms-3">
+                                <i class="bi bi-arrow-return-left fs-5 me-2"></i>
+                            </span>Voltar
+                        </a>
+
+                        <br><br>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER LOGO GRANDE -------------------------------------------------------------------------------------------------------->
+    <br><br><!-- br de espaço para separar o fixed top do header corretamente -->
+    <header class="bg-black position-relative overflow-hidden py-4" id="inicio">
+
+        <!-- Imagem de fundo do header -->
+        <img src="img/engrenagem.png" class="position-absolute top-0 start-0 w-100 h-100 opacity-25"
+            style="object-fit: cover; z-index: 1;" alt="Fundo da academia">
+
+        <!-- Conteúdo centralizado -->
+        <section class="container text-primary py-4 position-relative" style="z-index: 2;">
+
+            <div class="text-center">
+
+                <!-- LOGOTIPO MARTELO DE ALTERE -->
+                <img src="img/marteloAltere3.png" width="350" height="350" class="rounded-3 img-fluid mb-3"
+                    alt="Martelo e halteres">
+
+                <h1 class="display-5 fw-bold mb-3 text-white">
+                    Seu Portal Thor Gym
+                </h1>
+
+                <h5 class="text-primary">
+                    Área do administrador
+                </h5>
+
+            </div>
+
+        </section>
+
+    </header>
+
+    <!-- MAIN ------------------------------------------------------>
     <main class="container mt-5">
 
         <!-- Título e descrição -->
@@ -226,7 +331,7 @@ if (isset($_GET['apagar'])) {
 
                                         <button type="button"
                                             class="btn btn-outline-primary fw-bold"
-                                            onclick="window.location.href='02atualizarDados.php'">
+                                            onclick="window.location.href='atualizarDados.php'">
                                             <i class="bi bi-x-circle me-2"></i>
                                             Cancelar
                                         </button>
@@ -246,6 +351,24 @@ if (isset($_GET['apagar'])) {
         </section>
     </main>
 
+
+    <!-- FOOTER --------------------------------------------------------------------------------------------------------->
+    <footer class="text-white p-3 pt-4" data-bs-theme="dark" style="background-color: #1b253e;">
+        <section class=" container">
+            <div class="row">
+                <div class="col col-md">
+                    <h5 class="fw-bold"><i class="bi bi-lightning me-2"
+                            style="display: inline-block; transform: scaleX(-1);"></i>Thor
+                        Gym<i class="bi bi-lightning ms-1"></i></h5>
+                </div>
+                <div class="col col-md text-md-end">
+                    <p>© 2026 - Thor Gym - Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </section>
+
+    </footer>
+    <!-- Para conectar ao bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

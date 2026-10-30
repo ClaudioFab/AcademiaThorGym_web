@@ -40,23 +40,15 @@ if (!isset($_SESSION['usuario_id'])) {
 
                 <ul class="navbar-nav flex-row gap-3 me-2 align-items-center">
 
-                    <!-- Nome do usuário -->
+                    <!-- Nome do USUARIO NO TOPO ------------------------------------->
                     <li class="nav-item">
                         <span class="nav-link active fs-5 fw-bold text-white">
 
-                            <!-- Colocando nome do usuario logado no navbar -->
+                            <!-- Nome do usuario logado no navbar -->
                             <?php
-                            require("conexao.php");
-
-                            $consulta = "SELECT * FROM sistemathorgym.usuario";
-                            $usuario = mysqli_query($conexao, $consulta);
-
-                            while ($array = mysqli_fetch_array($usuario)) {
-                                echo "<h3 class='text-white fw-bold'>", $array['nome'],"</h3>";
-                            }
-
-
+                            echo "<h3 class='text-white fw-bold'>" . $_SESSION['usuario_nome'] . "</h3>";
                             ?>
+
                         </span>
                     </li>
 
@@ -153,20 +145,14 @@ if (!isset($_SESSION['usuario_id'])) {
         <section class="container">
             <br><br>
 
-            <div class=" d-flex justify-content-center align-items-center">
+            <!-- Reconhecer usuario ------------------------------>
+            <div class="d-flex justify-content-center align-items-center">
                 <section>
-                    <?php
-                    require("conexao.php");
-
-                    $consulta = "SELECT * FROM sistemathorgym.usuario";
-                    $usuario = mysqli_query($conexao, $consulta);
-
-                    while ($array = mysqli_fetch_array($usuario)) {
-                        echo "<h3 class='text-primary-emphasis fw-bold'>";
-                        echo "Bem-vindo, <span class='text-primary'>" . $array['nome'] . "</span>";
-                        echo "</h3>";
-                    }
-                    ?>
+                    <h3 class="text-primary-emphasis fw-bold">
+                        Bem-vindo, <span class="text-primary">
+                            <?= $_SESSION['usuario_nome'] ?>
+                        </span>
+                    </h3>
                 </section>
             </div>
 
@@ -178,13 +164,14 @@ if (!isset($_SESSION['usuario_id'])) {
                 </div>
                 <br><br>
 
-                <div class="row g-4 mb-5">
+                <div class="row g-4 mb-5 justify-content-center">
                     <!-- CARD01 --->
                     <div class="col-12 col-md-4">
 
                         <!----------------------->
                         <div class="card pb-2 mx-auto" style="width: 18rem;">
                             <div class="card-body">
+                                <a href="cadastroPlano.php">
                                 <i class="bi bi-book fs-1 text-primary"></i>
                                 <a class="card-title nav-link active fw-bold fs-5 text-primary-emphasis"
                                     href="cadastroPlano.php">Cadastro de Planos</a>
@@ -201,9 +188,10 @@ if (!isset($_SESSION['usuario_id'])) {
                     <div class="col-12 col-md-4">
                         <div class="card pb-2 mx-auto" style="width: 18rem;">
                             <div class="card-body">
+                                <a href="atualizarDados.php">
                                 <i class="bi bi-info-square fs-1 text-primary"></i>
                                 <a class="card-title nav-link active fw-bold fs-5 text-primary-emphasis"
-                                    href="02atualizarDados.php">Atualizar dados dos planos</a>
+                                    href="atualizarDados.php">Atualizar dados dos planos</a>
                                 <p class="card-text text-primary">Atualizar e gerenciar informações gerais dos planos.</p>
                                 <p> </p>
 
@@ -216,7 +204,7 @@ if (!isset($_SESSION['usuario_id'])) {
             </section>
             <!-- ------------------------------------------------------------------------------------------>
 
-            <br><br><br>
+            <br>
         </section>
     </main>
 
