@@ -20,13 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nomeP = $_POST["nomePlano"];
     $descricao = $_POST["descricao"];
 
-    // Converte o valor digitado em centavos para reais
-    // Exemplo: 7990 passa a ser 79.90
+    // Converte o valor digitado em centavos para reais = 7990 passa a ser 79.90
     $valor = $_POST["valor"] / 100;
 
-    // Garante que o valor tenha duas casas decimais
-    // Exemplo: 79.9 passa a ser 79.90
-    $valor = number_format($valor, 2, '.', '');
+
+    // Teste /Garante que o valor tenha duas casas decimais = 79.9 passa a ser 79.90
+    // $valor = number_format($valor, 2, '.', '');
 
     // Conecta ao banco de dados
     require("conexao.php");
@@ -221,6 +220,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         id="valor"
                                         name="valor"
                                         placeholder="Digite o valor do plano"
+                                        inputmode="numeric"
+                                        pattern="[0-9]+"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                         required>
                                 </div>
 

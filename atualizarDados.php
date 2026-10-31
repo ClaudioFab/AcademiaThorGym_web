@@ -3,25 +3,36 @@
 require("conexao.php");
 
 if (isset($_POST['atualizar'])) {
-    $idplanos    = $_POST['idplanos'];
-    $nomeP       = $_POST['nomePlano'];
-    $descricao   = $_POST['descricao'];
-    $valor       = $_POST['valor'];
 
-    $atualizar = "UPDATE planos SET 
-    nomePlano = '$nomeP', 
-    descricao = '$descricao', 
-    valor     = '$valor' 
-    WHERE idplanos = '$idplanos' ";
+    $idplanos  = $_POST['idplanos'];
+    $nomeP     = $_POST['nomePlano'];
+    $descricao = $_POST['descricao'];
+    $valor = (float) $_POST['valor'] / 100;
 
-    if (mysqli_query($conexao, $atualizar)) {
+    $atualizar = mysqli_prepare(
+        $conexao,
+        "UPDATE planos SET nomePlano = ?, descricao = ?, valor = ? 
+         WHERE idplanos = ?"
+    );
+
+    mysqli_stmt_bind_param(
+        $atualizar,
+        "ssdi",
+        $nomeP,
+        $descricao,
+        $valor,
+        $idplanos
+    );
+
+    if (mysqli_stmt_execute($atualizar)) {
+
         echo "<script>
             alert('Dados atualizados com sucesso!');
             window.location='atualizarDados.php';
         </script>";
         exit();
     } else {
-        echo "Erro ao atualizar!" . mysqli_error($conexao);
+        echo "Erro ao atualizar: " . mysqli_error($conexao);
     }
 }
 
@@ -300,22 +311,24 @@ if (isset($_GET['apagar'])) {
                                             required>
                                     </div>
 
-                                    <!-- Valor -->
+                                    <!-- Valor (permitindo apenas números de 0 a 9)-->
                                     <div class="mb-4 text-start">
                                         <label class="form-label fw-bold text-primary-emphasis">
                                             Valor do plano
                                         </label>
 
                                         <small class="form-text d-block mb-2">
-                                            Digite apenas números. Ex.: 1000 = R$ 10,00.
+                                            Digite apenas números. Ex.: 12345 = R$ 123,45.
                                         </small>
 
-                                        <input type="number"
+                                        <input type="text"
                                             name="valor"
+                                            id="valor"
                                             class="text-primary form-control border-primary-subtle"
-                                            value="<?= round($editaPlano['valor'] * 100) ?>"
-                                            step="1"
-                                            min="0"
+                                            value="<?= (int) round($editaPlano['valor'] * 100) ?>"
+                                            inputmode="numeric"
+                                            pattern="[0-9]+"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                             required>
                                     </div>
 
