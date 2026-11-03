@@ -35,7 +35,7 @@ $erro = isset($_GET["erro"]);
     <nav class="navbar p-2 fixed-top" data-bs-theme="dark" style="background-color: #28385d;">
         <div class="container-fluid">
             <!-- Título e icone --------------------------------->
-            <a class="navbar-brand fw-bold" href="#">
+            <a class="navbar-brand fw-bold" href="index.php">
                 <i class="bi bi-lightning me-2" style="display: inline-block; transform: scaleX(-1);"></i>Thor Gym<i
                     class="bi bi-lightning ms-1"></i></a>
 
@@ -138,7 +138,7 @@ $erro = isset($_GET["erro"]);
             <div class="text-center">
 
                 <!-- LOGOTIPO MARTELO DE ALTERE -->
-                <img src="img/marteloAltere3.png" width="350" height="350" class="rounded-3 img-fluid mb-3"
+                <img src="img/marteloAltere3.png" width="300" height="300" class="rounded-3 img-fluid mb-3"
                     alt="Martelo e halteres">
 
                 <h1 class="display-5 fw-bold mb-3 text-white">

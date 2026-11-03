@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <!-- NAVBAR -------------------------------------------------------------------------------------------------------->
     <nav class="navbar p-2 fixed-top" data-bs-theme="dark" style="background-color: #28385d;">
         <div class="container-fluid">
@@ -474,7 +475,7 @@
 
     <!-- dark-preFOOTER -->
     <section class="text-white bg-black">
-        <div class="row">
+        <div class="row g-0 mx-0">
 
             <!-- 01 IMAGEM ANIMADA THOR -------------------------------------------------------------------------------------------------->
             <div class="col col-md">

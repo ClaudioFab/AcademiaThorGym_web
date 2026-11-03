@@ -23,8 +23,15 @@ if (ini_get('session.use_cookies')) {
 // Destrói a sessão no servidor.
 session_destroy();
 
-// Redireciona o usuário para a página de login.
-header('Location: index.php');
+
+// Redireciona o usuário para a página de login sem mensagem.
+//header('Location: index.php');
+
+// Exibe mensagem de sucesso e redireciona para a página inicial.
+echo "<script>
+    alert('Usuário desconectado com sucesso!');
+    window.location='index.php';
+</script>";
 
 // Encerra a execução do código.
 exit;
