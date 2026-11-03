@@ -1,16 +1,3 @@
-<?php
-session_start();
-
-header('Cache-Control: no-store, no-cache, must-revalidate');
-
-// Se o usuário já estiver logado, redireciona de volta para o indexLogado.php
-if (isset($_SESSION['usuario_id'])) {
-    header('Location: indexLogado.php');
-    exit;
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,7 +19,7 @@ if (isset($_SESSION['usuario_id'])) {
     <nav class="navbar p-2 fixed-top" data-bs-theme="dark" style="background-color: #28385d;">
         <div class="container-fluid">
             <!-- Título e icone --------------------------------->
-            <a class="navbar-brand fw-bold" href="#">
+            <a class="navbar-brand fw-bold" href="index.php">
                 <i class="bi bi-lightning me-2" style="display: inline-block; transform: scaleX(-1);"></i>Thor Gym<i
                     class="bi bi-lightning ms-1"></i></a>
 
@@ -112,13 +99,12 @@ if (isset($_SESSION['usuario_id'])) {
                         </li> -->
 
                         <!-- BOTÃO VOLTAR -->
-                        <a href="index.php"
+                        <!-- <a href="index.php"
                             class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
-                            <!-- Ícone fixado na esquerda -->
                             <span class="position-absolute start-0 ms-3">
                                 <i class="bi bi-arrow-return-left fs-3"></i>
                             </span>Voltar
-                        </a>
+                        </a> -->
 
 
 
@@ -145,7 +131,7 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="text-center">
 
                 <!-- LOGOTIPO MARTELO DE ALTERE -->
-                <img src="img/marteloAltere3.png" width="350" height="350" class="rounded-3 img-fluid mb-3"
+                <img src="img/marteloAltere3.png" width="300" height="300" class="rounded-3 img-fluid mb-3"
                     alt="Martelo e halteres">
 
                 <h1 class="display-5 fw-bold mb-3 text-white">
@@ -282,8 +268,9 @@ if (isset($_SESSION['usuario_id'])) {
                                 <h4 class="text-primary">R$ 99,90</h4>
 
                                 <div>
-                                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                                        data-bs-target="#detalhesProduto">
+                                    <button type="button" class="btn btn-outline-primary w-100"
+                                        onclick="window.location.href='planosExtra.php'">
+
                                         <i class="bi bi-eye me-1"></i>
                                         Ver detalhes
                                     </button>
@@ -321,8 +308,9 @@ if (isset($_SESSION['usuario_id'])) {
                                 <h4 class="text-primary">R$ 199,90</h4>
 
                                 <div>
-                                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                                        data-bs-target="#detalhesProduto">
+                                    <button type="button" class="btn btn-outline-primary w-100"
+                                        onclick="window.location.href='planosExtra.php'">
+
                                         <i class="bi bi-eye me-1"></i>
                                         Ver detalhes
                                     </button>
@@ -360,8 +348,9 @@ if (isset($_SESSION['usuario_id'])) {
                                 <h4 class="text-primary">R$ 299,90</h4>
 
                                 <div>
-                                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
-                                        data-bs-target="#detalhesProduto">
+                                    <button type="button" class="btn btn-outline-primary w-100"
+                                        onclick="window.location.href='planosExtra.php'">
+
                                         <i class="bi bi-eye me-1"></i>
                                         Ver detalhes
                                     </button>

@@ -1,3 +1,4 @@
+//Blockear acesso caso não esteja logado
 <?php
 session_start();
 
@@ -31,7 +32,7 @@ if (!isset($_SESSION['usuario_id'])) {
     <nav class="navbar p-2 fixed-top" data-bs-theme="dark" style="background-color: #28385d;">
         <div class="container-fluid">
             <!-- Título e icone --------------------------------->
-            <a class="navbar-brand fw-bold" href="#">
+            <a class="navbar-brand fw-bold" href="index.php">
                 <i class="bi bi-lightning me-2" style="display: inline-block; transform: scaleX(-1);"></i>Thor Gym<i
                     class="bi bi-lightning ms-1"></i></a>
 
@@ -46,7 +47,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
                             <!-- Nome do usuario logado no navbar -->
                             <?php
-                            echo "<h3 class='text-white fw-bold'>" . $_SESSION['usuario_nome'] . "</h3>";
+                            echo "<h3 class='text-white fw-bold'>(" . $_SESSION['usuario_nome'] . ")</h3>";
                             ?>
 
                         </span>
@@ -56,6 +57,10 @@ if (!isset($_SESSION['usuario_id'])) {
                     <li class="nav-item">
                         <a class="nav-link active fs-5"
                             aria-current="page" href="#inicio">Início</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5 " aria-current="page" href="index.php">Voltar</a>
                     </li>
 
                     <!-- Desconectar -->
@@ -101,7 +106,15 @@ if (!isset($_SESSION['usuario_id'])) {
                             </button>
                         </form>
 
-                        <br><br>
+                        <br>
+
+                        <!-- BOTÃO VOLTAR -->
+                        <a href="index.php"
+                            class="fw-bold fs-5 btn btn-outline-light w-50 d-flex align-items-center justify-content-center position-relative">
+                            <span class="position-absolute start-0 ms-3">
+                                <i class="bi bi-arrow-return-left fs-3"></i>
+                            </span>Voltar
+                        </a>
 
                     </ul>
                 </div>
@@ -123,7 +136,7 @@ if (!isset($_SESSION['usuario_id'])) {
             <div class="text-center">
 
                 <!-- LOGOTIPO MARTELO DE ALTERE -->
-                <img src="img/marteloAltere3.png" width="350" height="350" class="rounded-3 img-fluid mb-3"
+                <img src="img/marteloAltere3.png" width="300" height="300" class="rounded-3 img-fluid mb-3"
                     alt="Martelo e halteres">
 
                 <h1 class="display-5 fw-bold mb-3 text-white">
