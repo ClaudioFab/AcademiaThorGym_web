@@ -276,17 +276,11 @@ if (isset($_GET['apagar'])) {
 
                                 <form method="POST">
 
-                                    <!-- ID -->
+                                    <!-- ID oculto para continuar enviando para o POST -->
                                     <div class="mb-3 text-start">
-                                        <label class="form-label fw-bold text-primary-emphasis">
-                                            ID
-                                        </label>
-
-                                        <input type="text"
+                                        <input type="hidden"
                                             name="idplanos"
-                                            class="text-primary form-control border-primary-subtle"
-                                            value="<?= $editaPlano['idplanos'] ?>"
-                                            readonly>
+                                            value="<?= $editaPlano['idplanos'] ?>">
                                     </div>
 
                                     <!-- Plano -->
