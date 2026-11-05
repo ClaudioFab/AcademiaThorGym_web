@@ -30,6 +30,7 @@ $erro = isset($_GET["erro"]);
 
 </head>
 
+
 <body style="background-color: #edf1f9;">
     <!-- NAVBAR -------------------------------------------------------------------------------------------------------->
     <nav class="navbar p-2 fixed-top" data-bs-theme="dark" style="background-color: #28385d;">
@@ -156,6 +157,8 @@ $erro = isset($_GET["erro"]);
 
     </header>
 
+    <!-- Linha divisória -->
+    <hr class="border border-black border-1 opacity-100 my-0">
 
     <!-- MAIN ----------------------------------------------------------------------------------->
     <main class="container mt-5">

@@ -129,7 +129,7 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
     <header class="bg-black position-relative overflow-hidden py-4" id="inicio">
 
         <!-- Imagem de fundo do header -->
-        <img src="img/thorFundo1.jpg" class="position-absolute top-0 start-0 w-100 h-100 opacity-25"
+        <img src="img/ceu_nuvens.jpg" class="position-absolute top-0 start-0 w-100 h-100 opacity-50"
             style="object-fit: cover; z-index: 1;" alt="Fundo da academia">
 
         <!-- Conteúdo centralizado -->
@@ -155,16 +155,19 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
         </section>
 
     </header>
+    
+    <!-- Linha divisória -->
+    <hr class="border border-black border-1 opacity-100 my-0">
 
     <!-- MAIN ----------------------------------------------------------------------------------------------------------->
-    <main style="background-color: #edf1f9;">
+    <main>
 
         <!-- CARD PLANOS EM DESTAQUE ---------------------------------------------------------------------------->
-        <section class="container-fluid text-center p-1" id="planos">
+        <section class="container-fluid text-center p-1" id="planos" style="background-image: url('img/ceu_nuvens.jpg'); background-size: cover; background-position: center;">
 
             <!-- ALERTA AVISO in -------------------------------------------------------------------------------->
             <section class="container mt-4 ">
-                <div class="alert alert-danger text-center p-1" role="alert">
+                <div class="alert alert-primary text-center p-1" role="alert">
                     <strong><i class="bi bi-gift fs-4 "></i><i class="bi bi-tree fs-4 me-2 "></i>Promoção Especial de
                         Natal!</strong><i class="bi bi-tree fs-4 ms-2"></i><i class="bi bi-gift me-3 fs-4 "></i>
                     <br>Plano Anual com preço exclusivo.
@@ -176,8 +179,8 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
             <div class="container">
                 <!-- Título base ----------------------------------------------------------------->
                 <div class="mt-4" id="produtos">
-                    <h2 class="text-primary-emphasis fw-bold">Planos em Destaque</h2>
-                    <h6 class="text-primary pb-4">Conheça alguns dos planos mais selecionados pela Thor Gym.</h6>
+                    <h2 class="text-white fw-bold">Planos em Destaque</h2>
+                    <h6 class="text-white pb-4">Conheça alguns dos planos mais selecionados pela Thor Gym.</h6>
                 </div>
 
                 <br>
@@ -321,7 +324,8 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                                             <!-- Preço --------------------->
                                             <h4 class="text-primary mt-3">
                                                 R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?>
-                                            <span class="fs-6">/mensal</span></h4>
+                                                <span class="fs-6">/mensal</span>
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>

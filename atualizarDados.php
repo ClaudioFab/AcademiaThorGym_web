@@ -193,6 +193,9 @@ if (isset($_GET['apagar'])) {
 
     </header>
 
+    <!-- Linha divisória -->
+    <hr class="border border-black border-1 opacity-100 my-0">
+
     <!-- MAIN ------------------------------------------------------>
     <main class="container mt-5">
 

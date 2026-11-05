@@ -178,6 +178,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </header>
 
+    <!-- Linha divisória -->
+    <hr class="border border-black border-1 opacity-100 my-0">
+
     <!-- MAIN ------------------------------------------------------>
     <!-- br de espaço para separar o fixed top do header corretamente -->
     <main class="container mt-5">
