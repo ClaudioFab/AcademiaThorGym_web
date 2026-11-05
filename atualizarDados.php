@@ -218,8 +218,11 @@ if (isset($_GET['apagar'])) {
                                     <th class="bg-primary text-white">Plano</th>
                                     <th class="bg-primary text-white">Descrição</th>
                                     <th class="bg-primary text-white">Valor</th>
-                                    <th class="bg-primary text-white"></th>
+                                    <th class="bg-primary p-1 text-center">
+                                        <a href="planosExtra.php" target="_blank" class="text-primary fs-6 fw-bold btn btn-dark btn-sm w-100 py-1 d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-eye me-2 fs-5"></i>Verificar planos</a></th>
                                 </tr>
+
                             </thead>
 
                             <tbody>

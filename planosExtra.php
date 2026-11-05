@@ -1,13 +1,12 @@
 <?php
-
 //Inicia a sessão php
 session_start();
 
 // Conecta ao banco de dados
 require("conexao.php");
 
-// Busca todos os planos cadastrados no banco em ordem decrescente (os últimos cadastrados primeiro)
-$sql_planos = "SELECT * FROM planos ORDER BY idplanos DESC";
+// Busca todos os planos cadastrados no banco de dados(colocar DESC para os últimos cadastrados primeiro )
+$sql_planos = "SELECT * FROM planos ORDER BY idplanos";
 $resultado_planos = mysqli_query($conexao, $sql_planos);
 ?>
 
@@ -157,9 +156,6 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
 
     </header>
 
-
-
-
     <!-- MAIN ----------------------------------------------------------------------------------------------------------->
     <main style="background-color: #edf1f9;">
 
@@ -189,6 +185,7 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                 <!-- CARDS dos 3 PLANOS PRINCIPAIS -------------------------------------------->
                 <div class="row pb-5 g-3">
                     <div class="col col-mg">
+
                         <!-- produto 01 ----------------------------->
                         <div class="card mx-auto shadow" style="width: 18rem;">
                             <img src="img/produto01.png" class="card-img-top" style="height: 220px; object-fit: cover;">
@@ -214,7 +211,7 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                                 <p class="text-secondary text-decoration-line-through mb-0">R$ 150,90</p>
 
                                 <!-- Preço atual -->
-                                <h4 class="text-primary">R$ 99,90</h4>
+                                <h4 class="text-primary">R$ 99,90 <span class="fs-6">/mensal</span></h4>
 
                             </div>
                         </div>
@@ -246,7 +243,7 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                                 <p class="text-secondary text-decoration-line-through mb-0">R$ 299,90</p>
 
                                 <!-- Preço atual -->
-                                <h4 class="text-primary">R$ 199,90</h4>
+                                <h4 class="text-primary">R$ 199,90 <span class="fs-6">/mensal</span></h4>
 
                             </div>
                         </div>
@@ -278,14 +275,13 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                                 <p class="text-secondary text-decoration-line-through mb-0">R$ 399,90</p>
 
                                 <!-- Preço atual -->
-                                <h4 class="text-primary">R$ 299,90</h4>
+                                <h4 class="text-primary">R$ 299,90 <span class="fs-6">/mensal</span></h4>
 
                             </div>
                         </div>
                         <!--  --------------------------------------->
                     </div>
                 </div>
-
 
                 <!-- TITULO DE ALERT THORGYM PLUS ---------------------------------------------->
                 <section class="container mt-4 pb-5">
@@ -296,19 +292,17 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                     </div>
                 </section>
 
-
-
-
                 <!-- PLANOS CADASTRADOS NO BANCO DE DADOS ------------------------------------>
                 <div class="row pb-5 gx-4 gy-5">
 
-                    <!-- if com While para ficar buscando todos os registrados --------------->
+                    <!-- if com While para ficar buscando todos os registrados/ else se não houver nada --------------->
                     <?php if ($resultado_planos && mysqli_num_rows($resultado_planos) > 0): ?>
 
                         <?php while ($plano = mysqli_fetch_assoc($resultado_planos)): ?>
 
                             <div class="col col-mg">
                                 <div class="card mx-auto shadow h-100" style="width: 18rem;">
+                                    <img src="img/altere_plus.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
                                     <div class="card-body d-flex flex-column justify-content-between">
                                         <div>
                                             <div class="text-start">
@@ -327,46 +321,29 @@ $resultado_planos = mysqli_query($conexao, $sql_planos);
                                             <!-- Preço --------------------->
                                             <h4 class="text-primary mt-3">
                                                 R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?>
-                                            </h4>
+                                            <span class="fs-6">/mensal</span></h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
                         <?php endwhile; ?>
 
-
                     <?php else: ?>
+                        <!-- Mensagem caso não tenha nada cadastrado ---------------------------------------->
                         <div class="col-12">
-                            <p class="text-muted">Nenhum plano adicional cadastrado no momento.</p>
+                            <p class="text-muted">Nenhum plano adicional no momento.</p>
                         </div>
 
                     <?php endif; ?>
 
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-                <!-- FINAL THOR PLUS --------------------------------------------------------->
-
-
 
             </div>
 
         </section>
 
     </main>
-
 
     <!-- FOOTER --------------------------------------------------------------------------------------------------------->
     <footer class="text-white p-3 pt-4" data-bs-theme="dark" style="background-color: #1b253e;">

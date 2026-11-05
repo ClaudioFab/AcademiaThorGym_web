@@ -405,7 +405,7 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            Onde vocês estão localizados e há estacionamento?
+                            A academia oferece estacionamento para os alunos?
                         </button>
                     </h2>
                     <!-- Resposta 2 -->
