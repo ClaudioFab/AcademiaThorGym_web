@@ -1,3 +1,16 @@
+<?php
+
+//Inicia a sessão php
+session_start();
+
+// Conecta ao banco de dados
+require("conexao.php");
+
+// Busca todos os planos cadastrados no banco em ordem decrescente (os últimos cadastrados primeiro)
+$sql_planos = "SELECT * FROM planos ORDER BY idplanos DESC";
+$resultado_planos = mysqli_query($conexao, $sql_planos);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -154,7 +167,7 @@
         <section class="container-fluid text-center p-1" id="planos">
 
             <!-- ALERTA AVISO in -------------------------------------------------------------------------------->
-            <section class="container mt-4 " style="background-color: #edf1f9;">
+            <section class="container mt-4 ">
                 <div class="alert alert-danger text-center p-1" role="alert">
                     <strong><i class="bi bi-gift fs-4 "></i><i class="bi bi-tree fs-4 me-2 "></i>Promoção Especial de
                         Natal!</strong><i class="bi bi-tree fs-4 ms-2"></i><i class="bi bi-gift me-3 fs-4 "></i>
@@ -165,16 +178,16 @@
             </section>
 
             <div class="container">
-                <!-- Título -->
+                <!-- Título base ----------------------------------------------------------------->
                 <div class="mt-4" id="produtos">
                     <h2 class="text-primary-emphasis fw-bold">Planos em Destaque</h2>
                     <h6 class="text-primary pb-4">Conheça alguns dos planos mais selecionados pela Thor Gym.</h6>
                 </div>
 
                 <br>
-                <div class="row pb-5 g-3">
 
-                    <!-- CARDS dos 3 PRODUTOS -->
+                <!-- CARDS dos 3 PLANOS PRINCIPAIS -------------------------------------------->
+                <div class="row pb-5 g-3">
                     <div class="col col-mg">
                         <!-- produto 01 ----------------------------->
                         <div class="card mx-auto shadow" style="width: 18rem;">
@@ -272,6 +285,81 @@
                         <!--  --------------------------------------->
                     </div>
                 </div>
+
+
+                <!-- TITULO DE ALERT THORGYM PLUS ---------------------------------------------->
+                <section class="container mt-4 pb-5">
+                    <div class="alert alert-primary text-center p-3" role="alert">
+
+                        <h4 class="fw-bold"><i class="bi bi-lightning me-2" style="display: inline-block; transform: scaleX(-1);"></i>Conheça nossos planos ThorGym plus!<i class="bi bi-lightning ms-1"></i></h4>
+                        Pacotes ThorGym Plus com novas ofertas todo mês!
+                    </div>
+                </section>
+
+
+
+
+                <!-- PLANOS CADASTRADOS NO BANCO DE DADOS ------------------------------------>
+                <div class="row pb-5 gx-4 gy-5">
+
+                    <!-- if com While para ficar buscando todos os registrados --------------->
+                    <?php if ($resultado_planos && mysqli_num_rows($resultado_planos) > 0): ?>
+
+                        <?php while ($plano = mysqli_fetch_assoc($resultado_planos)): ?>
+
+                            <div class="col col-mg">
+                                <div class="card mx-auto shadow h-100" style="width: 18rem;">
+                                    <div class="card-body d-flex flex-column justify-content-between">
+                                        <div>
+                                            <div class="text-start">
+                                                <span class="badge text-bg-primary">ThorGym Plus</span>
+                                            </div>
+                                            <!-- Nome do Plano-------------->
+                                            <h5 class="card-title pt-3 text-primary-emphasis fw-bold">
+                                                <?php echo htmlspecialchars($plano['nomePlano']); ?>
+                                            </h5>
+                                            <!-- Descrição ---------------->
+                                            <p class="card-text text-primary">
+                                                <?php echo htmlspecialchars($plano['descricao']); ?>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <!-- Preço --------------------->
+                                            <h4 class="text-primary mt-3">
+                                                R$ <?php echo number_format($plano['valor'], 2, ',', '.'); ?>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        <?php endwhile; ?>
+
+
+                    <?php else: ?>
+                        <div class="col-12">
+                            <p class="text-muted">Nenhum plano adicional cadastrado no momento.</p>
+                        </div>
+
+                    <?php endif; ?>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!-- FINAL THOR PLUS --------------------------------------------------------->
+
+
 
             </div>
 
