@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     Seu Portal Thor Gym
                 </h1>
 
-                <h5 class="text-primary">
+                <h5 class="text-white">
                     Área do administrador
                 </h5>
 

@@ -143,7 +143,7 @@ if (!isset($_SESSION['usuario_id'])) {
                     Seu Portal Thor Gym
                 </h1>
 
-                <h5 class="text-primary">
+                <h5 class="text-white">
                     Área do administrador
                 </h5>
 

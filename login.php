@@ -146,7 +146,7 @@ $erro = isset($_GET["erro"]);
                     Seu Portal Thor Gym
                 </h1>
 
-                <h5 class="text-primary">
+                <h5 class="text-white">
                     Conheça nossos planos, dados cadastrais <br> e o canal de atendimento interno em uma única
                     plataforma!
                 </h5>
